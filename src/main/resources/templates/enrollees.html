@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title th:text="${title}"> Список абитуриентов: </title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="header::header"></header>
+
+<ul  th:each="enrollee : ${enrollees}">
+    <li>
+        <a th:text="${enrollee.id} + ' ' + ${enrollee.fullName}"
+           th:href="@{/enrollee/{id}(id=${enrollee.getId()})}">
+            enrollee name </a>
+        <a th:href="@{/exam{id}(id=${enrollee.getId()})}">
+            Добавить экзамен </a>
+    </li>
+</ul>
+
+<a th:href="@{/add}">Добавить абитуриента</a>
+
+<footer th:insert="footer::footer"></footer>
+</body>
+</html>
