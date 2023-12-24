@@ -46,6 +46,7 @@ public class EnrolleeController {
     }
     @PostMapping("/add")
     public String enrolleeSubmit(@ModelAttribute Enrollee enrollee, Model model) {
+        enrollee.setId(enrolleeDao.getAll().size());
         enrolleeDao.save(enrollee);
         List<Enrollee> enrollees = enrolleeDao.getAll();
         model.addAttribute("enrollees", enrollees);
